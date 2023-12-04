@@ -2,14 +2,14 @@ def main(input_str: str) -> str:
     try:
         var = list(map(str, input_str.split()))
 
+        if len(var) != 3 or var[1] not in {'+', '-', '*', '/'}:
+            return "throws Exception: Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)"
+
         if "." in var[0] or "." in var[2]:
             return "throws Exception: Введенные числа не целые"
         
         num1 = int(var[0])
         num2 = int(var[2])
-
-        if len(var) != 3 or var[1] not in {'+', '-', '*', '/'}:
-            return "throws Exception: Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)"
 
         if not (1 <= num1 <= 10) or not (1 <= num2 <= 10):
             return "throws Exception: Введенные числа меньше 0 или больше 10"
