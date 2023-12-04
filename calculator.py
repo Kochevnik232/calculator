@@ -1,6 +1,10 @@
 def main(input_str: str) -> str:
     try:
         var = list(map(str, input_str.split()))
+
+        if "." in var[0] or "." in var[2]:
+            return "throws Exception: Введенные числа не целые"
+        
         num1 = int(var[0])
         num2 = int(var[2])
 
