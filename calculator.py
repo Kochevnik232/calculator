@@ -17,7 +17,7 @@ def main(input_str: str) -> str:
         result = None
         if var[1] == "+":
             result = num1 + num2
-        elif var[1] == "-":
+        elif var[1] == "-": 
             result = num1 - num2
         elif var[1] == "*":
             result = num1 * num2
