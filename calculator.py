@@ -1,34 +1,37 @@
-def main(input_str: str) -> str:
-    try:
-        var = list(map(str, input_str.split()))
+def main(user_input: str) -> str:
+    var = user_input.split(" ")
 
+    try:    
         if len(var) != 3 or var[1] not in {'+', '-', '*', '/'}:
-            return "throws Exception: Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)"
+            raise ValueError("Формат операции неверный")
 
-        if "." in var[0] or "." in var[2]:
-            return "throws Exception: Введенные числа не целые"
-        
+        if not (var[0].isdigit() and var[2].isdigit()):
+            raise ValueError("Введенные числа некорректны")
+
         num1 = int(var[0])
         num2 = int(var[2])
+        operator = var[1]
 
         if not (1 <= num1 <= 10) or not (1 <= num2 <= 10):
-            return "throws Exception: Введенные числа меньше 0 или больше 10"
+            raise ValueError("Введенные числа меньше 1 или больше 10")
 
-        result = None
-        if var[1] == "+":
-            result = num1 + num2
-        elif var[1] == "-": 
-            result = num1 - num2
-        elif var[1] == "*":
-            result = num1 * num2
-        elif var[1] == "/":
-            result = num1 // num2
-        return result
-
-    except:
+        result = calc(num1, operator, num2)
         return str(result)
 
+    except ValueError as e:
+        return f"Error: {e}"
 
-user_input = input("Введите пример в формате 1 + 2: ")
-result = main(user_input)
-print(result)
+def calc(num1: int, operator: str, num2: int) -> int:
+    if operator == "+":
+        return num1 + num2
+    elif operator == "-":
+        return num1 - num2
+    elif operator == "*":
+        return num1 * num2
+    elif operator == "/":
+        return int(num1 // num2)
+    
+if __name__ == '__main__':
+    user_input = input("Введите пример в формате 1 + 2: ")
+    result_end = main(user_input)
+    print(result_end)
